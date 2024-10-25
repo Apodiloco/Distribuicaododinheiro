@@ -1,0 +1,204 @@
+<html><head><base href="Calculator/" />
+    <meta charset="UTF-8">
+    <title>Calculadora de Orçamento Pessoal Interativa</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            color: white;
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #ffffff;
+            margin-bottom: 30px;
+        }
+
+        .input-section {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        input[type="number"] {
+            padding: 10px;
+            font-size: 18px;
+            width: 200px;
+            border: none;
+            border-radius: 5px;
+            margin-bottom: 20px; /* Adicionei margin-bottom para separar o input do botão */
+            display: block; /* Faz o input ocupar sua própria linha */
+            margin-left: auto; /* Centraliza o input */
+            margin-right: auto; /* Centraliza o input */
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 18px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .category {
+            margin: 20px 0;
+            padding: 15px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.05);
+            transition: transform 0.3s ease;
+        }
+
+        .category:hover {
+            transform: translateX(10px);
+        }
+
+        .category h3 {
+            margin: 0;
+            color: #4CAF50;
+        }
+
+        .value {
+            font-size: 24px;
+            font-weight: bold;
+            color: #ffffff;
+            margin-top: 10px;
+        }
+
+        .percentage {
+            color: #8bc34a;
+            font-size: 14px;
+        }
+
+        .total {
+            text-align: center;
+            font-size: 32px;
+            margin-bottom: 30px;
+            color: #4CAF50;
+        }
+
+        #results {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Distribuicão 
+          do Dinheiro</h1>
+        
+        <div class="input-section">
+            <input type="number" id="amount" placeholder="Digite o valor" min="0" step="0.01">
+            <button onclick="calculateBudget()">Calcular</button>
+        </div>
+
+        <div id="results">
+            <div class="total" id="totalAmount"></div>
+
+            <div class="category">
+                <h3>Gastos Básicos</h3>
+                <div class="value" id="basicExpenses"></div>
+                <div class="percentage">50% do total</div>
+            </div>
+
+            <div class="category">
+                <h3>Despesas Longo Prazo</h3>
+                <div class="value" id="longTermExpenses"></div>
+                <div class="percentage">10% do total</div>
+            </div>
+
+            <div class="category">
+                <h3>Diversão</h3>
+                <div class="value" id="fun"></div>
+                <div class="percentage">10% do total</div>
+            </div>
+
+            <div class="category">
+                <h3>Liberdade Financeira</h3>
+                <div class="value" id="financialFreedom"></div>
+                <div class="percentage">10% do total</div>
+            </div>
+
+            <div class="category">
+                <h3>Investimento</h3>
+                <div class="value" id="investment"></div>
+                <div class="percentage">10% do total</div>
+            </div>
+
+            <div class="category">
+                <h3>Reserva de Emergência</h3>
+                <div class="value" id="emergency"></div>
+                <div class="percentage">10% do total</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function formatCurrency(value) {
+            return new Intl.NumberFormat('pt-BR', {
+                style: 'currency',
+                currency: 'BRL'
+            }).format(value);
+        }
+
+        function calculateBudget() {
+            const amount = parseFloat(document.getElementById('amount').value);
+            
+            if (isNaN(amount) || amount <= 0) {
+                alert('Por favor, insira um valor válido maior que zero.');
+                return;
+            }
+
+            const basicExpenses = amount * 0.5;
+            const longTermExpenses = amount * 0.1;
+            const fun = amount * 0.1;
+            const financialFreedom = amount * 0.1;
+            const investment = amount * 0.1;
+            const emergency = amount * 0.1;
+
+            document.getElementById('totalAmount').textContent = formatCurrency(amount);
+            document.getElementById('basicExpenses').textContent = formatCurrency(basicExpenses);
+            document.getElementById('longTermExpenses').textContent = formatCurrency(longTermExpenses);
+            document.getElementById('fun').textContent = formatCurrency(fun);
+            document.getElementById('financialFreedom').textContent = formatCurrency(financialFreedom);
+            document.getElementById('investment').textContent = formatCurrency(investment);
+            document.getElementById('emergency').textContent = formatCurrency(emergency);
+
+            document.getElementById('results').style.display = 'block';
+        }
+
+        document.getElementById('amount').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                calculateBudget();
+            }
+        });
+
+        document.querySelectorAll('.category').forEach(category => {
+            category.addEventListener('mouseenter', () => {
+                category.style.backgroundColor = 'rgba(255, 255, 255, 0.1)';
+            });
+            
+            category.addEventListener('mouseleave', () => {
+                category.style.backgroundColor = 'rgba(255, 255, 255, 0.05)';
+            });
+        });
+    </script>
+</body></html>
