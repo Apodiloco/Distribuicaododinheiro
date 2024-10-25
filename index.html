@@ -10,13 +10,16 @@
             background: linear-gradient(135deg, #1e3c72, #2a5298);
             color: white;
             margin: 0;
-            padding: 20px;
-            min-height: 100vh;
+            padding: 0;
+            height: 100vh; /* Ajuste a altura para ocupar toda a tela */
+            display: flex; /* Usar flexbox para centralizar */
+            justify-content: center; /* Centralizar horizontalmente */
+            align-items: center; /* Centralizar verticalmente */
         }
 
         .container {
             max-width: 800px;
-            margin: 0 auto;
+            width: 100%; /* Permitir que a largura seja responsiva */
             background: rgba(255, 255, 255, 0.1);
             padding: 30px;
             border-radius: 15px;
