@@ -1,17 +1,23 @@
-<html>
+<!DOCTYPE html>
+<html lang="pt-BR">
 <head>
-    <base href="Calculator/" />
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <title>Calculadora de Orçamento Pessoal Interativa</title>
-    <link rel="apple-touch-icon" href="IMG_0903.png">
     <style>
-        /* Remover o fundo branco */
+        /* Reset de estilo para garantir que não haja fundo branco */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #000000, #333333);
+            background: #000000; /* Fundo preto */
             color: white;
-            margin: 0;
-            padding: 0; /* Removido o padding */
             min-height: 100vh;
             display: flex;
             align-items: center;
